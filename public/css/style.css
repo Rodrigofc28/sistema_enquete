@@ -1,0 +1,53 @@
+body{
+  
+    background-color: rgb(240, 239, 239);
+}
+h1{
+   
+    text-align: center;
+    border-radius: 5px;
+    font-size: 50px;
+}
+.conteiner{
+    margin: 100px;
+    background-color: rgb(238, 228, 228);
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha conforme necessário */
+    margin-bottom: 30px;
+    padding: 5px;
+    border-radius: 5px;
+   
+    background-color: #fffbfb;
+}
+
+.flex-item{
+   
+    width: 25%; /* Define a largura de cada coluna para 25% do contêiner (quatro colunas) */
+    box-sizing: border-box; /* Inclui as bordas e o preenchimento no cálculo da largura */
+    padding: 5px;
+}
+
+#titulo{
+    font-weight: bolder;
+    padding-left: 5px;
+}
+.status{
+    background-color: yellow;
+}
+.votos{
+    background-color: rgb(224, 219, 213);
+    border-radius: 2px;
+    
+}
+@media (max-width: 600px) {
+    .flex-item{
+        padding: 0px;
+      width: 100%; /* Uma coluna ocupando toda a largura */
+    }
+   .conteiner{
+        margin: 0px;
+   }
+    
+}
