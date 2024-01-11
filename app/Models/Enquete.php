@@ -72,7 +72,7 @@ class Enquete extends Model
         // Defina um valor padrão ou lógica apropriada se necessário
         $status = 'Indefinido';
     }
-
+   
     return $status;
 }
 
