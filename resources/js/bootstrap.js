@@ -4,24 +4,18 @@
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+
 import axios from 'axios';
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-
-
-window.Pusher = require('pusher-js');
-
-
+window.Pusher = Pusher;
+ 
 window.Echo = new Echo({
-    broadcaster: 'redis',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    host: window.location.hostname + ':6001', // Porta padrão para o servidor Redis
+    broadcaster: 'pusher',
+    key: import.meta.env.VITE_PUSHER_APP_KEY,
+    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+    forceTLS: true
 });
-
-window.Echo.channel('enquete-channel')
-    .listen('enquete-status-updated', (event) => {
-        // Atualize a interface do usuário com o novo status
-        console.log('Enquete Status Updated:', event);
-    });
