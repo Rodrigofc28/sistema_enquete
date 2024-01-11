@@ -1,3 +1,4 @@
+
 <x-app-layout>
         <div>
             <h1>GERENCIAMENTO DE ENQUETES</h1>
@@ -55,6 +56,30 @@
     @endforeach
      
     </div>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/echo.js"></script>
+    <!-- Adicione o código JavaScript para ouvir eventos Laravel Echo -->
+    <script>
+        
+        window.Echo.channel('enquete-channel')
+            .listen('EnqueteStatusUpdated', (event) => {
+                // const enqueteId = event.enquete.id;
+                // console.log(enqueteId)
+                // // Encontrar o elemento HTML correspondente à enquete
+                // const enqueteElement = document.querySelector(`[data-enquete-id="${enqueteId}"]`);
+
+                // if (enqueteElement) {
+                //     // Atualizar o status da enquete no elemento HTML
+                //     const statusElement = enqueteElement.querySelector('.status');
+                //     if (statusElement) {
+                //         statusElement.innerHTML = `Status: ${event.enquete.status}`;
+                //     }
+
+                //     // Atualizar a interface do usuário conforme necessário
+                //     console.log('Enquete Status Atualizado em tempo real', event.enquete);
+                // }
+            });
+    </script>
     </x-app-layout>
 
 

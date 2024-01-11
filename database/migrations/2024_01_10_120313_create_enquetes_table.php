@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('enquetes', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->date('dataInicio');
+            $table->string('dataInicio');
             $table->string('dataFim');
             $table->string('opcao1');
             $table->string('opcao2');

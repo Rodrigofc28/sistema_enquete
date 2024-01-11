@@ -24,10 +24,12 @@ Route::prefix('enquete')->group(function () {
     Route::get('/criar', function () {
         return view('enquete.create');
     })->name('create.enquete');
-    Route::post('/store', [EnqueteController::class, 'store'])->name('enquete.store');
+    Route::post('/store', [EnqueteController::class, 'store'])->middleware('web')->name('enquete.store');
 
     Route::get('/editar/{enquete_id}', function ($enquete_id) {
-        return view('enquete.edit',compact('enquete_id'));
+        $edit=Enquete::where('id',$enquete_id)->first();
+        
+        return view('enquete.edit',compact('enquete_id','edit'));
     })->name('enquete.edit');
 
     Route::patch('/modificar/{enquete_id}', [EnqueteController::class, 'update'])->name('enquete.update');

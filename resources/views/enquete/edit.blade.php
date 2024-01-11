@@ -13,6 +13,7 @@
                                 <x-text-input id="titulo"  class="block mt-1 w-full" 
                                                 type="text"
                                                 name="titulo"
+                                                value="{{$edit->titulo}}"
                                                 required  />
                                             
                             <div >
@@ -21,6 +22,7 @@
                                 <x-date-input id="dataInicio"  class="block mt-1 w-full" 
                                                 type="datetime-local"
                                                 name="dataInicio"
+                                                value="{{$edit->dataInicio}}"
                                                 required  />
                             </div>
                            
@@ -30,6 +32,7 @@
                                 <x-date-input id="dataFim"  class="block mt-1 w-full" 
                                                 type="datetime-local"
                                                 name="dataFim"
+                                                value="{{$edit->dataFim}}"
                                                 required  />
                             </div>
                             <h3 class="text-center text-lg italic font-extrabold underline">3 opções de resposta</h3>
@@ -38,6 +41,7 @@
                                 <x-text-input id="opcao1"  class="block mt-1 w-full" 
                                                 type="text"
                                                 name="opcao1"
+                                                value="{{$edit->opcao1}}"
                                                 required  />
                             </div>
                             <div >
@@ -45,6 +49,7 @@
                                 <x-text-input id="opcao2"  class="block mt-1 w-full" 
                                                 type="text"
                                                 name="opcao2"
+                                                value="{{$edit->opcao2}}"
                                                 required  />
                             </div>
                             
@@ -54,6 +59,7 @@
                                 <x-text-input id="opcao3"  class="block mt-1 w-full" 
                                                 type="text"
                                                 name="opcao3"
+                                                value="{{$edit->opcao3}}"
                                                 required  />
                             </div>
                             

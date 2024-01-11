@@ -20,16 +20,17 @@
                                 <h3 class="text-center text-lg italic font-extrabold underline">Data e Hora</h3>
                                 <x-input-label for="dataInicio" :value="__('Data Inicio')" />
                                 <x-date-input id="dataInicio"  class="block mt-1 w-full" 
-                                                type="datetime-local"
+                                                
                                                 name="dataInicio"
-                                                required  />
+                                                 />
+                                
                             </div>
                            
                             <div >
                                 
                                 <x-input-label for="dataFim" :value="__('Data Fim')" />
                                 <x-date-input id="dataFim"  class="block mt-1 w-full" 
-                                                type="datetime-local"
+                                                
                                                 name="dataFim"
                                                 required  />
                             </div>

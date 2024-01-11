@@ -11,6 +11,7 @@ class Enquete extends Model
 {
     use HasFactory;
 
+    
     protected $fillable = [
         'titulo',
         'dataInicio',
@@ -53,28 +54,30 @@ class Enquete extends Model
 
     // Novo método para determinar o status
    // Novo método para determinar o status
+  
    public function getStatusAttribute()
-   {
-       $agora = now();
-   
-       if ($this->dataInicio <= $agora && $agora <= $this->dataFim) {
-           $status = 'Em Andamento';
-       } elseif ($agora > $this->dataFim) {
-           $status = 'Finalizado';
-       } elseif ($agora < $this->dataInicio) {
-           $status = 'Não Iniciada';
-       } else {
-           // Pode adicionar lógica para outros casos, se necessário
-           return null;
-       }
-   
-       // Emitir evento de atualização
-       //event(new \App\Events\EnqueteStatusUpdated($this));
-   
-       return $status;
-   }
+{
+    $agora = now();
 
-   
+    // Lógica para determinar o status
+    $dataInicio = new \DateTime($this->dataInicio);
+    $dataFim = new \DateTime($this->dataFim);
+    if (($agora > $dataInicio) && ($agora < $dataFim)) {
+        $status = 'Em Andamento';
+    } elseif ($agora > $dataFim) {
+        $status = 'Finalizado';
+    } elseif ($agora < $dataInicio) {
+        $status = 'Não Iniciada';
+    } else {
+        // Defina um valor padrão ou lógica apropriada se necessário
+        $status = 'Indefinido';
+    }
+
+    return $status;
+}
 
 }
+   
+
+
 

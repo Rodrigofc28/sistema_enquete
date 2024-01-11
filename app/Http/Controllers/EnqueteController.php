@@ -11,24 +11,30 @@ class EnqueteController extends Controller
 {
   
     public function store(Request $request)
-    {
-        
-        $data = $request->validate([
-            'titulo' => 'required|string',
-            'dataInicio' => 'required|date',
-            'dataFim' => 'required|date|after:dataInicio',
-            'opcao1' => 'required|string',
-            'opcao2' => 'required|string',
-            'opcao3' => 'required|string',
-        ]);
+{
+    $data = $request->validate([
+        'titulo' => 'required|string',
+        'dataInicio' => 'required|date|',
+        'dataFim' => 'required|date|after:dataInicio',
+        'opcao1' => 'required|string',
+        'opcao2' => 'required|string',
+        'opcao3' => 'required|string',
+    ]);
 
-        $enquete = Enquete::create($data);
+    // Converta a data para o formato apropriado antes de criar o objeto.
+    
 
-       
+    // Certifique-se de que o campo dataInicio esteja no $fillable no modelo Enquete.
+   
+    $enquete = new Enquete($data);
+   
+    $enquete->status = $enquete->getStatusAttribute(); // Configura o status
+    
+    $enquete->save();
 
-        return redirect()->route('home')
-            ->with('enq_criada', 'Enquete criada com sucesso!');
-    }
+    return redirect()->route('home')
+        ->with('enq_criada', 'Enquete criada com sucesso!');
+}
   
     public function update(Request $request, Enquete $enquete_id)
     {
@@ -46,12 +52,16 @@ class EnqueteController extends Controller
         $enquete_id->update($data);
     
         // Atualizar opções de resposta
+   
         $enquete_id->update([
             'opcao1' => $data['opcao1'],
             'opcao2' => $data['opcao2'],
             'opcao3' => $data['opcao3'],
         ]);
-
+       
+        $enquete_id->status = $enquete_id->getStatusAttribute();
+        
+        $enquete_id->save();
         return redirect()->route('home')
             ->with('enq_edit', 'Enquete editada com sucesso!');
     }
