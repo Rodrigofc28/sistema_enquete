@@ -31,7 +31,7 @@ class EnqueteController extends Controller
     $enquete->status = $enquete->getStatusAttribute(); // Configura o status
     
     $enquete->save();
-    broadcast(new EnqueteStatusUpdated('external'));
+    broadcast(new EnqueteStatusUpdated());
     return redirect()->route('home')
         ->with('enq_criada', 'Enquete criada com sucesso!');
 }
@@ -62,7 +62,7 @@ class EnqueteController extends Controller
         $enquete_id->status = $enquete_id->getStatusAttribute();
         
         $enquete_id->save();
-        broadcast(new EnqueteStatusUpdated('external'));
+        broadcast(new EnqueteStatusUpdated());
         return redirect()->route('home')
             ->with('enq_edit', 'Enquete editada com sucesso!');
     }
@@ -75,7 +75,7 @@ class EnqueteController extends Controller
 }
 public function show()
 {
-    
+    broadcast(new EnqueteStatusUpdated());
     $enquetes = Enquete::all();
     $enqueteIds = $enquetes->pluck('id')->toArray();
     $contagemVotos = OpcaoResposta::contagemVotosPorOpcao($enqueteIds)->get();
@@ -95,7 +95,7 @@ public function show()
             'opcoesComVotos' => $opcoesComVotos,
         ];
     });
-    broadcast(new EnqueteStatusUpdated('external'));
+    
     return view('enquete.show', compact('enquetesComVotos'));
 }
 

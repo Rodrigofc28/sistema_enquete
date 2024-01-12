@@ -13,14 +13,7 @@ class EnqueteStatusUpdatedListener
 {
     public function handle(EnqueteStatusUpdated $event)
     {
-        // Verificar se o evento foi originado externamente
-        if ($event->source === 'external') {
-            // Transmitir o evento usando WebSockets
-            Broadcast::event(new EnqueteStatusUpdated('internal'));
-        }
         
-        // Aqui você pode personalizar a transmissão conforme necessário
-        // Evitar emitir o evento novamente se originado internamente
     }
 }
 

@@ -22,7 +22,7 @@ class OpcaoRespostaController extends Controller
         $opcaoResposta->enquete_id = $enquete_id;
         $opcaoResposta->save();
         
-        broadcast(new EnqueteStatusUpdated('external'));
+        broadcast(new EnqueteStatusUpdated());
         return redirect()->route('enquete.show')
             ->with('enq_resp', 'Enquete respondida com sucesso!');
     }

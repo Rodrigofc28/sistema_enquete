@@ -14,9 +14,8 @@ class EnqueteStatusUpdated implements ShouldBroadcast
 
     public $source;
 
-    public function __construct($source = 'external')
+    public function __construct()
     {
-        $this->source = $source;
     }
 
     public function broadcastOn():Channel
