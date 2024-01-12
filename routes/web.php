@@ -24,7 +24,7 @@ Route::prefix('enquete')->group(function () {
     Route::get('/criar', function () {
         return view('enquete.create');
     })->name('create.enquete');
-    Route::post('/store', [EnqueteController::class, 'store'])->middleware('web')->name('enquete.store');
+    Route::post('/store', [EnqueteController::class, 'store'])->name('enquete.store');
 
     Route::get('/editar/{enquete_id}', function ($enquete_id) {
         $edit=Enquete::where('id',$enquete_id)->first();
@@ -36,6 +36,6 @@ Route::prefix('enquete')->group(function () {
     Route::delete('/deletar/{enquete_id}', [EnqueteController::class, 'destroy'])->name('enquete.destroy');
 });
 //Rota para apresentação e votação
-Route::get('/apresentacao', [EnqueteController::class, 'show'])->middleware('web')->name('enquete.show');
+Route::get('/apresentacao', [EnqueteController::class, 'show'])->name('enquete.show');
 Route::post('/store/{enquete_id}', [OpcaoRespostaController::class, 'store'])->name('enquete.resp');
 require __DIR__.'/auth.php';

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use App\Events\EnqueteStatusUpdated;  // Importe a classe do evento
+use App\Listeners\EnqueteStatusUpdatedListener; 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

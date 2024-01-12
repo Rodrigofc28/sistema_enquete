@@ -1,4 +1,7 @@
 <x-app-layout>
+    
+
+   
     <h1>APRESENTAÇÃO</h1>
     <x-back-button class="ms-4">
         {{ __('Voltar') }}
@@ -59,6 +62,7 @@
             </div>
         @endforeach
     </div>
-  
+    
+    
 </x-app-layout>
 

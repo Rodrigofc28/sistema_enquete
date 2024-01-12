@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class OpcaoResposta extends Model
 {
     use HasFactory;
+    protected $listeners = ['echo:enquete,EnqueteStatusUpdated'=>'$refresh'];
     protected $fillable = [
         'titulo_id',
         'opcao',

@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Enquete;
 use App\Models\OpcaoResposta; // Adicione esta linha
-
+use App\Events\EnqueteStatusUpdated;
 class EnqueteController extends Controller
 {
   
@@ -31,7 +31,7 @@ class EnqueteController extends Controller
     $enquete->status = $enquete->getStatusAttribute(); // Configura o status
     
     $enquete->save();
-
+    broadcast(new EnqueteStatusUpdated('external'));
     return redirect()->route('home')
         ->with('enq_criada', 'Enquete criada com sucesso!');
 }
@@ -62,6 +62,7 @@ class EnqueteController extends Controller
         $enquete_id->status = $enquete_id->getStatusAttribute();
         
         $enquete_id->save();
+        broadcast(new EnqueteStatusUpdated('external'));
         return redirect()->route('home')
             ->with('enq_edit', 'Enquete editada com sucesso!');
     }
@@ -69,11 +70,12 @@ class EnqueteController extends Controller
     public function destroy(Enquete $enquete_id)
 {
     $enquete_id->delete();
-
+    broadcast(new EnqueteStatusUpdated('external'));
     return redirect()->route('home')->with('enq_del', 'Enquete deletada com sucesso!');
 }
 public function show()
 {
+    
     $enquetes = Enquete::all();
     $enqueteIds = $enquetes->pluck('id')->toArray();
     $contagemVotos = OpcaoResposta::contagemVotosPorOpcao($enqueteIds)->get();
@@ -86,14 +88,14 @@ public function show()
                 'votos' => $contagemVotos->where('enquete_id', $enquete->id)->where('opcao', $enquete->$opcao)->first()->total ?? 0,
             ];
         });
-
+        // 
         return [
             'enquete' => $enquete,
             'status' => $enquete->status, // Adiciona o status aqui
             'opcoesComVotos' => $opcoesComVotos,
         ];
     });
-
+    broadcast(new EnqueteStatusUpdated('external'));
     return view('enquete.show', compact('enquetesComVotos'));
 }
 

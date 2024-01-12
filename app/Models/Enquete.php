@@ -11,7 +11,7 @@ class Enquete extends Model
 {
     use HasFactory;
 
-    
+    protected $listeners = ['echo:enquete,EnqueteStatusUpdated'=>'$refresh'];
     protected $fillable = [
         'titulo',
         'dataInicio',

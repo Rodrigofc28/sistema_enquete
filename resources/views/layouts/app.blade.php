@@ -10,19 +10,23 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-        
+       @vite(['resources/css/app.css', 'resources/js/app.js'])
+       <script  src="https://js.pusher.com/7.0/pusher.min.js"></script>
+       <script type="module" src="https://cdn.jsdelivr.net/npm/laravel-echo@~1.10/dist/echo.js"></script>
+
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+       
     </head>
     <body >
+        @livewire('votacao')
         <div class="conteiner" >
            <main>
                 {{ $slot }}
             
             </main>
         </div>
+        
+        
     </body>
 </html>
 
