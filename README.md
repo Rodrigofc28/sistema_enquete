@@ -3,11 +3,9 @@ Sobre o sistema de Enquete
 Sistema consiste em criar enquetes e gerenciar tanto para editar e deletar, podendo vê o número de votação verificar as que estão em andamento e finalizadas.
 
 Copyright © Rodrigo de Freitas Camargo
-Requisitos
-    docker compose instalado na maquina
-
-    git
-
+Requisitos para rodar o sistema
+    #docker compose e git instalado na maquina
+    
 Como Usar
 
 Tenha instalados todos os requisitos.
@@ -26,7 +24,11 @@ Apoś subir o sistema com o docker e estar na pasta do repositório rode os segu
     composer update
     php artisan key:generate
     php artisan migrate 
-    php artisan websockets:serve
+    php artisan queue:work
     npm run build
+Para funcionaridade do realtime que utilizo como websoket 
+rode o seguinte comando
+#docker run -p 6001:6001 -p 9601:9601 -e SOKETI_METRICS_ENABLED=1 quay.io/soketi/soketi:latest-16-alpine
+#laravel-echo-server start 
 
 Acesse localhost:8080
