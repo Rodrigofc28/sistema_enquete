@@ -9,7 +9,7 @@ class OpcaoRespostaController extends Controller
 {
     public function store(Request $request, $enquete_id)
     {
-    
+        broadcast(new EnqueteStatusUpdated());
         $data = $request->validate([
             'opcao' => 'required|string',
         ]);
@@ -21,8 +21,8 @@ class OpcaoRespostaController extends Controller
         $opcaoResposta->opcao = $data['opcao'];
         $opcaoResposta->enquete_id = $enquete_id;
         $opcaoResposta->save();
+       
         
-        broadcast(new EnqueteStatusUpdated());
         return redirect()->route('enquete.show')
             ->with('enq_resp', 'Enquete respondida com sucesso!');
     }

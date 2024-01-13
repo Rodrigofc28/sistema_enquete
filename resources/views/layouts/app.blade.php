@@ -18,7 +18,7 @@
        
     </head>
     <body >
-        @livewire('votacao')
+        
         <div class="conteiner" >
            <main>
                 {{ $slot }}
